@@ -1,4 +1,12 @@
 import { link } from "fs";
+const { combineReducers } = Redux;
+const todoApp = combineReducers({
+  todos,
+  visibilityFilter
+});
+const { createStore } = Redux;
+const store =createStore(todoApp);
+
 const { Component } = React;
 
 // The link component now only 
