@@ -1,6 +1,8 @@
 import { link } from "fs";
 const { Component } = React;
 
+// The link component now only 
+// specifies how the linke loks wheethere it is active ot inactive
 const Link = ({
   active,
   children,
@@ -82,7 +84,21 @@ const Footer = () => (
 
 // This is a container compoenent so doesnt't have its own markup
 // It delegates rendering to the Link proesentational component
+// This provides the data and the behaviour for the presentational component
+
 class FilterLink extends Component {
+  // This calls forceUpdate antine tthe store changes this re-renders the screen
+  componentDidMount() {
+    this.unsubscribe = store.subscribe(() =>
+    this.forceUpdate()
+    );
+  }
+
+  // Very important that the component unsubscribes
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
+
   render() {
     const props = this.props;
     const state = store.getState();
